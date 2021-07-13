@@ -33,17 +33,19 @@ def get_task(task_id):
 @app.route('/todo/api/v1.0/rec', methods=['POST'])
 def create_task():
     # if not request.json or not 'title' in request.json:
-    username = request.args.get('destinatario')
-    #     abort(400)
-    task = {
-        'id': tasks[-1]['id'] + 1,
-        'title': username,
-        # 'title': request.json['title'],
-        'description': request.json.get('description', ""),
-        'done': False
-    }
-    tasks.append(task)
-    return jsonify({'task': task}), 201
+    destinatario = request.args.get('destinatario')
+    mensaje = request.args.get('mensaje')
+    # task = {
+    #     'id': tasks[-1]['id'] + 1,
+    #     'title': username,
+    #     # 'title': request.json['title'],
+    #     'description': request.json.get('description', ""),
+    #     'done': False
+    # }
+    # tasks.append(task)
+    # return jsonify({'task': task}), 201
+
+    return '''<h1>The language value is: {} y {}</h1>'''.format(destinatario,mensaje)
 
 if __name__ == '__main__':
     app.run(debug=False)
