@@ -1,4 +1,5 @@
 #!flask/bin/python
+from re import U
 from flask import Flask, jsonify, abort, request
 
 app = Flask(__name__)
@@ -31,11 +32,13 @@ def get_task(task_id):
 
 @app.route('/todo/api/v1.0/rec', methods=['POST'])
 def create_task():
-    if not request.json or not 'title' in request.json:
-        abort(400)
+    # if not request.json or not 'title' in request.json:
+    username = request.args.get('destinatario')
+    #     abort(400)
     task = {
         'id': tasks[-1]['id'] + 1,
-        'title': request.json['title'],
+        'title': username,
+        # 'title': request.json['title'],
         'description': request.json.get('description', ""),
         'done': False
     }
