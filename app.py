@@ -44,6 +44,8 @@ def create_task():
     # }
     # tasks.append(task)
     # return jsonify({'task': task}), 201
+    print(destinatario)
+    print(mensaje)
 
     return '''<h1>The language value is: {} y {}</h1>'''.format(destinatario,mensaje)
 
