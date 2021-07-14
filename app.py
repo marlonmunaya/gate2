@@ -1,7 +1,8 @@
 from flask import Flask, jsonify, abort, request
 import requests
 # from flask_jwt_extended import JWTManager
-
+mensaje =""
+destinatario =""
 app = Flask(__name__)
 # app.config['SECRET_KEY'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiODE0MjUzYy1mMDAyLTQ3MTYtYjkwOS0xMmJhY2E3MDc3ZDEiLCJ1bmlxdWVfbmFtZSI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsIm5hbWVpZCI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsImVtYWlsIjoiYWdlbnRlNUB0ZWxlbmV0LnBlIiwiYXV0aF90aW1lIjoiMDcvMTMvMjAyMSAxMzoxOTo0NCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFETUlOSVNUUkFUT1IiLCJleHAiOjI1MzQwMjMwMDgwMCwiaXNzIjoiQ2xhcmVfQUkiLCJhdWQiOiJDbGFyZV9BSSJ9.0YITXIKLxJHe5Prjt7O53ofcRvi0PNJb-U7TI06cRRE'
 # jwt = JWTManager(app)
@@ -33,9 +34,9 @@ def get_task(task_id):
 
 @app.route('/todo/api/v1.0/rec', methods=['POST'])
 def create_task():
-    # mensaje
+    global destinatario, mensaje
     # if not request.json or not 'title' in request.json:
-    destinatario = request.values.get('destinatario')
+    destinatario = "51" + request.values.get('destinatario')
     mensaje = request.values.get('mensaje')
     # token= request.authorization
     # task = {
@@ -49,8 +50,7 @@ def create_task():
     # return jsonify({'task': task}), 201
     print(destinatario)
     print(mensaje)
-    # test()
-
+    sendmsn()
     return '''<h1>The language value is: {} y {}</h1>'''.format(mensaje,mensaje)
 
 def test():    
@@ -63,6 +63,19 @@ def test():
     # than keep alive time for TCP connection
     print(response)
     print(response.json())
+
+def sendmsn():    
+    url = 'https://live-server-763.wati.io/api/v1/sendTemplateMessage'
+    auth_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiODE0MjUzYy1mMDAyLTQ3MTYtYjkwOS0xMmJhY2E3MDc3ZDEiLCJ1bmlxdWVfbmFtZSI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsIm5hbWVpZCI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsImVtYWlsIjoiYWdlbnRlNUB0ZWxlbmV0LnBlIiwiYXV0aF90aW1lIjoiMDcvMTMvMjAyMSAxMzoxOTo0NCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFETUlOSVNUUkFUT1IiLCJleHAiOjI1MzQwMjMwMDgwMCwiaXNzIjoiQ2xhcmVfQUkiLCJhdWQiOiJDbGFyZV9BSSJ9.0YITXIKLxJHe5Prjt7O53ofcRvi0PNJb-U7TI06cRRE'
+    param = {'whatsappNumber': destinatario}
+    data={"template_name": "confirmacion_pago",
+           "broadcast_name": "confirmacion_pago",
+            "parameters": "[{'name':'name', 'value':'John'}]"
+        }
+    headers = {'Content-type': 'application/json ; charset=UTF-8','Authorization': 'Bearer ' + auth_token}
+    response = requests.post(url, params=param, headers=headers,data=data)
+    print(response)
+    print(response.json())    
 
 
 if __name__ == '__main__':
