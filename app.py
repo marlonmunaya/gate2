@@ -90,7 +90,7 @@ def sendmsn():
     headers = {'Accept':'*/*','Content-type': 'application/json-patch+json ; charset=UTF-8','Authorization': 'Bearer ' + auth_token}
     response = requests.post(url, params=param, headers=headers,json=data2)
     print(response)
-    # print(response.json())    
+    print(response.json())    
 
 
 if __name__ == '__main__':
