@@ -4,7 +4,7 @@ import json
 # from flask_jwt_extended import JWTManager
 mensaje =""
 destinatario =""
-parm
+datos={}
 app = Flask(__name__)
 # app.config['SECRET_KEY'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiODE0MjUzYy1mMDAyLTQ3MTYtYjkwOS0xMmJhY2E3MDc3ZDEiLCJ1bmlxdWVfbmFtZSI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsIm5hbWVpZCI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsImVtYWlsIjoiYWdlbnRlNUB0ZWxlbmV0LnBlIiwiYXV0aF90aW1lIjoiMDcvMTMvMjAyMSAxMzoxOTo0NCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFETUlOSVNUUkFUT1IiLCJleHAiOjI1MzQwMjMwMDgwMCwiaXNzIjoiQ2xhcmVfQUkiLCJhdWQiOiJDbGFyZV9BSSJ9.0YITXIKLxJHe5Prjt7O53ofcRvi0PNJb-U7TI06cRRE'
 # jwt = JWTManager(app)
@@ -36,11 +36,11 @@ def get_task(task_id):
 
 @app.route('/todo/api/v1.0/rec', methods=['POST'])
 def create_task():
-    global destinatario, mensaje, parm
+    global destinatario, mensaje, datos
     # if not request.json or not 'title' in request.json:
     destinatario = "51" + request.values.get('destinatario')
     mensaje = request.values.get('mensaje')
-    parm = json.loads(mensaje)
+    datos = json.loads(mensaje)
     # token= request.authorization
     # task = {
     #     'id': tasks[-1]['id'] + 1,
@@ -71,9 +71,9 @@ def sendmsn():
     url = 'https://live-server-763.wati.io/api/v1/sendTemplateMessage'
     auth_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiODE0MjUzYy1mMDAyLTQ3MTYtYjkwOS0xMmJhY2E3MDc3ZDEiLCJ1bmlxdWVfbmFtZSI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsIm5hbWVpZCI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsImVtYWlsIjoiYWdlbnRlNUB0ZWxlbmV0LnBlIiwiYXV0aF90aW1lIjoiMDcvMTMvMjAyMSAxMzoxOTo0NCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFETUlOSVNUUkFUT1IiLCJleHAiOjI1MzQwMjMwMDgwMCwiaXNzIjoiQ2xhcmVfQUkiLCJhdWQiOiJDbGFyZV9BSSJ9.0YITXIKLxJHe5Prjt7O53ofcRvi0PNJb-U7TI06cRRE'
     param = {'whatsappNumber': destinatario}
-    data={"template_name": parm["service"],
-            "broadcast_name": parm["service"],
-            "parameters": [{"name":"name", "value": parm["name"]}]
+    data={"template_name": datos["service"],
+            "broadcast_name": datos["service"],
+            "parameters": [{"name":"name", "value": datos["name"]}]
         }
     headers = {'Accept':'*/*','Content-type': 'application/json-patch+json ; charset=UTF-8','Authorization': 'Bearer ' + auth_token}
     response = requests.post(url, params=param, headers=headers,json=data)
