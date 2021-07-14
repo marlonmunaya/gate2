@@ -1,8 +1,9 @@
 from flask import Flask, jsonify, abort, request
 import requests
+from flask_jwt_extended import JWTManager
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiODE0MjUzYy1mMDAyLTQ3MTYtYjkwOS0xMmJhY2E3MDc3ZDEiLCJ1bmlxdWVfbmFtZSI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsIm5hbWVpZCI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsImVtYWlsIjoiYWdlbnRlNUB0ZWxlbmV0LnBlIiwiYXV0aF90aW1lIjoiMDcvMTMvMjAyMSAxMzoxOTo0NCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFETUlOSVNUUkFUT1IiLCJleHAiOjI1MzQwMjMwMDgwMCwiaXNzIjoiQ2xhcmVfQUkiLCJhdWQiOiJDbGFyZV9BSSJ9.0YITXIKLxJHe5Prjt7O53ofcRvi0PNJb-U7TI06cRRE'
 tasks = [
     {
         'id': 1,
@@ -34,6 +35,7 @@ def create_task():
     # if not request.json or not 'title' in request.json:
     destinatario = request.args.get('destinatario')
     mensaje = request.args.get('mensaje')
+    token= request.authorization
     # task = {
     #     'id': tasks[-1]['id'] + 1,
     #     'title': username,
