@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, abort, request
 import requests
+import json
 # from flask_jwt_extended import JWTManager
 mensaje =""
 destinatario =""
@@ -70,10 +71,9 @@ def sendmsn():
     param = {'whatsappNumber': destinatario}
     data={"template_name": "confirmacion_pago",
            "broadcast_name": "confirmacion_pago",
-            "parameters": "[{'name':'name', 'value':'John'}]"
-        }
+            "parameters": "[{'name':'name', 'value':'John'}]"}
     headers = {'Content-type': 'application/json ; charset=UTF-8','Authorization': 'Bearer ' + auth_token}
-    response = requests.post(url, params=param, headers=headers,data=data)
+    response = requests.post(url, params=param, headers=headers,data=json.dumps(data))
     print(response)
     print(response.json())    
 
