@@ -34,7 +34,7 @@ def get_task(task_id):
 
 @app.route('/todo/api/v1.0/rec', methods=['POST'])
 def create_task():
-    global mensaje
+    # mensaje
     # if not request.json or not 'title' in request.json:
     # destinatario = request.args.get('destinatario',type=str)
     mensaje = request.args.get('mensaje')
@@ -50,13 +50,13 @@ def create_task():
     # return jsonify({'task': task}), 201
     # print(destinatario)
     print(mensaje)
-    test()
+    # test()
     return '''<h1>The language value is: {} y {}</h1>'''.format(mensaje,mensaje)
 
 def test():    
     url = 'https://live-server-763.wati.io/api/v1/sendSessionMessage/51937535378'
     auth_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiODE0MjUzYy1mMDAyLTQ3MTYtYjkwOS0xMmJhY2E3MDc3ZDEiLCJ1bmlxdWVfbmFtZSI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsIm5hbWVpZCI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsImVtYWlsIjoiYWdlbnRlNUB0ZWxlbmV0LnBlIiwiYXV0aF90aW1lIjoiMDcvMTMvMjAyMSAxMzoxOTo0NCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFETUlOSVNUUkFUT1IiLCJleHAiOjI1MzQwMjMwMDgwMCwiaXNzIjoiQ2xhcmVfQUkiLCJhdWQiOiJDbGFyZV9BSSJ9.0YITXIKLxJHe5Prjt7O53ofcRvi0PNJb-U7TI06cRRE'
-    param = {'messageText':mensaje,}
+    param = {'messageText':"mensaje",}
     headers = {'Content-type': 'application/json ; charset=UTF-8','Authorization': 'Bearer ' + auth_token}
     response = requests.post(url, params=param, headers=headers)
     # wait for the response. it should not be higher 
