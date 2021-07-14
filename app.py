@@ -69,11 +69,9 @@ def sendmsn():
     url = 'https://live-server-763.wati.io/api/v1/sendTemplateMessage'
     auth_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiODE0MjUzYy1mMDAyLTQ3MTYtYjkwOS0xMmJhY2E3MDc3ZDEiLCJ1bmlxdWVfbmFtZSI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsIm5hbWVpZCI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsImVtYWlsIjoiYWdlbnRlNUB0ZWxlbmV0LnBlIiwiYXV0aF90aW1lIjoiMDcvMTMvMjAyMSAxMzoxOTo0NCIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFETUlOSVNUUkFUT1IiLCJleHAiOjI1MzQwMjMwMDgwMCwiaXNzIjoiQ2xhcmVfQUkiLCJhdWQiOiJDbGFyZV9BSSJ9.0YITXIKLxJHe5Prjt7O53ofcRvi0PNJb-U7TI06cRRE'
     param = {'whatsappNumber': destinatario}
-    data={"template_name": "confirmacion_pago",
-           "broadcast_name": "confirmacion_pago",
-            "parameters": "[{'name':'name', 'value':'John'}]"}
+    data={"template_name": "confirmacion_pago","broadcast_name": "confirmacion_pago","parameters": "[{'name':'name', 'value':'John'}]"}
     headers = {'Content-type': 'application/json ; charset=UTF-8','Authorization': 'Bearer ' + auth_token}
-    response = requests.post(url, params=param, headers=headers,data=json.dumps(data))
+    response = requests.post(url, params=param, headers=headers,json=data)
     print(response)
     print(response.json())    
 
