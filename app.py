@@ -75,8 +75,20 @@ def sendmsn():
             "broadcast_name": datos["service"],
             "parameters": [{"name":"name", "value": datos["name"]}]
         }
+    data2={"template_name": datos["service"],
+            "broadcast_name": datos["service"],
+        "parameters":[
+            {"name":"name","value": datos["name"]},
+            {"name":"cedula","value": datos["cedula"]},
+            {"name":"codigo","value": datos["codigo"]},
+            {"name":"dia pago","value": datos["dia pago"]},
+            {"name":"zona","value": datos["zona"]},
+            {"name":"total cobrar","value": datos["total cobrar"]},
+            {"name":"corte","value": datos["corte"]}
+            ]
+        }
     headers = {'Accept':'*/*','Content-type': 'application/json-patch+json ; charset=UTF-8','Authorization': 'Bearer ' + auth_token}
-    response = requests.post(url, params=param, headers=headers,json=data)
+    response = requests.post(url, params=param, headers=headers,json=data2)
     print(response)
     # print(response.json())    
 
