@@ -37,7 +37,7 @@ def create_task():
     global mensaje
     # if not request.json or not 'title' in request.json:
     # destinatario = request.args.get('destinatario',type=str)
-    mensaje = request.values.get('mensaje',type=str)
+    mensaje = request.values.get('mensaje')
     token= request.authorization
     # task = {
     #     'id': tasks[-1]['id'] + 1,
