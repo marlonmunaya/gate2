@@ -71,7 +71,7 @@ def sendmsn():
     param = {'whatsappNumber': destinatario}
     data={"template_name": "confirmacion_pago","broadcast_name": "confirmacion_pago","parameters": "[{'name':'name', 'value':'John'}]"}
     headers = {'Accept':'*/*','Content-type': 'application/json-patch+json ; charset=UTF-8','Authorization': 'Bearer ' + auth_token}
-    response = requests.post(url, params=param, headers=headers,data=data)
+    response = requests.post(url, params=param, headers=headers,json=data)
     print(response)
     print(response.json())    
 
