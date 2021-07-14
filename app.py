@@ -35,7 +35,7 @@ def get_task(task_id):
 def create_task():
     # mensaje
     # if not request.json or not 'title' in request.json:
-    destinatario = request.args.get('destinatario')
+    destinatario = request.values.get('destinatario')
     mensaje = request.values.get('mensaje')
     # token= request.authorization
     # task = {
