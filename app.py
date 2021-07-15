@@ -81,7 +81,7 @@ def sendmsn():
             {"name":"name","value": datos["name"]},
             {"name":"cedula","value": datos["cedula"]},
             {"name":"codigo","value": datos["codigo"]},
-            # {"name":"dia pago","value": datos["dia pago"]},
+            {"name":"dia_pago","value": datos["dia pago"]},
             {"name":"zona","value": datos["zona"]},
             {"name":"total cobrar","value": datos["total cobrar"]},
             {"name":"corte","value": datos["corte"]}
