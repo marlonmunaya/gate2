@@ -52,7 +52,7 @@ def create_task():
     # tasks.append(task)
     # return jsonify({'task': task}), 201
     print(destinatario)
-    print(datos.json())
+    print(datos)
     sendmsn()
     return '''<h1>The language value is: {} y {}</h1>'''.format(mensaje,mensaje)
 
@@ -91,7 +91,6 @@ def sendmsn():
     response = requests.post(url, params=param, headers=headers,json=data2)
     print(response)
     print(response.json())    
-
 
 if __name__ == '__main__':
     app.run(debug=False)
