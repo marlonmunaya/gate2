@@ -52,7 +52,7 @@ def create_task():
     # tasks.append(task)
     # return jsonify({'task': task}), 201
     print(destinatario)
-    print(mensaje)
+    print(datos.json())
     sendmsn()
     return '''<h1>The language value is: {} y {}</h1>'''.format(mensaje,mensaje)
 
@@ -81,7 +81,7 @@ def sendmsn():
             {"name":"name","value": datos["name"]},
             {"name":"cedula","value": datos["cedula"]},
             {"name":"codigo","value": datos["codigo"]},
-            {"name":"dia pago","value": datos["dia pago"]},
+            # {"name":"dia pago","value": datos["dia pago"]},
             {"name":"zona","value": datos["zona"]},
             {"name":"total cobrar","value": datos["total cobrar"]},
             {"name":"corte","value": datos["corte"]}
