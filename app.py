@@ -74,14 +74,14 @@ def sendwati():
 
 def sendgateway(msn,destino):    
     url = 'https://smsgateway.me/api/v4/message/send'
-    auth_token='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTYyNjUzMDc2MiwiZXhwIjo0MTAyNDQ0ODAwLCJ1aWQiOjg5NTk4LCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.TRLktENHg51BtYjIrWN7QhhBbH6msUxJj92LF9UugXs'
+    auth_token='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhZG1pbiIsImlhdCI6MTYyNjcyNTU5MCwiZXhwIjo0MTAyNDQ0ODAwLCJ1aWQiOjg5NTk4LCJyb2xlcyI6WyJST0xFX1VTRVIiXX0.xHr7EHibHbAf-tYXH3Jq03wcxChwR4qj2oSQVZsJ0nE'
     # param = {'whatsappNumber': destinatario}
     headers = {'Accept':'*/*','Content-type': 'application/json-patch+json ; charset=UTF-8','Authorization': auth_token}
     data = [{
     "from": "GPON NETWORKS",
     "phone_number": destino,
     "message": msn,
-    "device_id": 125113
+    "device_id": 125132
     }]
     response = requests.post(url, headers=headers,json=data)
     print(response)
