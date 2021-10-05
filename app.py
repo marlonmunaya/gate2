@@ -31,7 +31,8 @@ def create_task():
         if (datos['service']=='bienvenida4'):
             sendwati()
     except:
-        sendgateway(mensaje,destinatario)
+        # sendgateway(mensaje,destinatario)
+        sendgateway(destinatario,mensaje)
 
     print(destinatariowati)
        
@@ -85,7 +86,19 @@ def sendgateway(msn,destino):
     }]
     response = requests.post(url, headers=headers,json=data)
     print(response)
-    print(response.json()) 
+    print(response.json())
+
+def sendwaboxapp(destino,mensaje):    
+    token='?token=5303b353839545c8d5041da4eb118d866040e7fe2e166&uid=51927793746'
+    uid='&uid=51927793746'
+    to='&to=51'+destino
+    custom_id='&custom_id=85214mih'
+    text = '&text='+ mensaje
+    url2 = 'https://www.waboxapp.com/api/send/chat'+token+uid+to+custom_id+text 
+    response = requests.post(url2)
+    print(response)
+    print(response.json())   
 
 if __name__ == '__main__':
     app.run(debug=False)
+    # sendwaboxapp()
