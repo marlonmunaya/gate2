@@ -32,7 +32,7 @@ def create_task():
             sendwati()
     except:
         # sendgateway(mensaje,destinatario)
-        sendgateway(destinatario,mensaje)
+        sendwaboxapp(destinatario,mensaje)
 
     print(destinatariowati)
        
