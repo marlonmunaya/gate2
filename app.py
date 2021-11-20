@@ -28,12 +28,11 @@ def create_task():
     mensaje = request.values.get('mensaje')
     try:
         datos = json.loads(mensaje)
-        if (datos['service']=='bienvenida4'):
+        if (datos['service']=='bienvenida5'):
             sendwati()
     except:
         # sendgateway(mensaje,destinatario)
         sendwaboxapp(destinatario,mensaje)
-
     print(destinatariowati)
        
     return '''<h1>The language value is: {} y {}</h1>'''.format(destinatario,mensaje)
