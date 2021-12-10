@@ -40,7 +40,8 @@ def create_task():
             sendwati()
     except:
         # sendgateway(mensaje,destinatario)
-        sendwaboxapp(destinatario,mensaje)
+        # sendwaboxapp(destinatario,mensaje)
+        livesendmsg()
     print(destinatariowati)
        
     return '''<h1>The language value is: {} y {}</h1>'''.format(destinatario,mensaje)
