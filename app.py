@@ -116,15 +116,15 @@ def livesendmsg():
 
 
 def livesendmsg1(token):   
-    tokens ={'PageGearToken': token}
+    
     url = 'https://api.pagegear.co/liveconnect/direct/wa/sendMessage'
-    headers = {'Accept':'*/*','Content-type': 'application/json'}
+    headers = {'Accept':'*/*','Content-type': 'application/json','PageGearToken': token}
     data = {
     "id_canal": 2974,
     "numero": 51937535378,
     "mensaje": "Mensaje de prueba"
     }
-    response = requests.post(url, headers=headers,json=data,auth= tokens)
+    response = requests.post(url, headers=headers,json=data)
     responsejson = response.json()
     
     print(responsejson)
