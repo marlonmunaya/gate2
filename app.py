@@ -106,10 +106,10 @@ def livesendmsg():
     }
     response = requests.post(url, headers=headers,json=data)
     responsejson = response.json()
-    # tokenlive = responsejson["PageGearToken"]
+    tokenlive = responsejson["PageGearToken"]
     print(response)
  
-    return responsejson
+    return tokenlive
 
 def sendwaboxapp(destino,mensaje):    
     token='?token=5303b353839545c8d5041da4eb118d866040e7fe2e166&uid=51927793746'
