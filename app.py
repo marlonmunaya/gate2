@@ -122,9 +122,12 @@ def livesendmsg1(token):
     "numero": 51937535378,
     "mensaje": "Mensaje de prueba"
     }
-    response = requests.post(url, headers=headers,json=data)
+    try:
+        response = requests.post(url, headers=headers,json=data)
+        print("exito")
+    except:
+        print("Fallo al enviar")  
     # responsejson = response.json()
-    print("exito")
 
     
 def sendwaboxapp(destino,mensaje):    
