@@ -124,7 +124,7 @@ def livesendmsg1(token):
     }
     response = requests.post(url, headers=headers,json=data)
     # responsejson = response.json()
-    print(response)
+    print("exito")
 
     
 def sendwaboxapp(destino,mensaje):    
