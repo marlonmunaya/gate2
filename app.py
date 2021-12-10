@@ -2,7 +2,10 @@ from flask import Flask, jsonify, abort, request
 import requests
 import json
 
+from werkzeug.wrappers import response
+
 mensaje =""
+responselive=""
 destinatariowati =""
 datos={}
 app = Flask(__name__)
@@ -93,7 +96,8 @@ def sendgateway(msn,destino):
     print(response)
     print(response.json())
 
-def livesendmsg():    
+def livesendmsg():   
+    
     url = 'https://api.pagegear.co/liveconnect/account/token'
     headers = {'Accept':'*/*','Content-type': 'application/json'}
     data = {
@@ -101,12 +105,11 @@ def livesendmsg():
     "privateKey": "851d1d96d6633b4ced6d3d50d6d6a956"
     }
     response = requests.post(url, headers=headers,json=data)
-    auth_token=''
+    responsejson = json.loads(response.json())
+    tokenlive = responsejson["PageGearToken"]
     print(response)
-    
-    print(response.json())
-
-    return response.json()
+ 
+    return tokenlive
 
 def sendwaboxapp(destino,mensaje):    
     token='?token=5303b353839545c8d5041da4eb118d866040e7fe2e166&uid=51927793746'
@@ -116,6 +119,7 @@ def sendwaboxapp(destino,mensaje):
     text = '&text='+ mensaje
     url2 = 'https://www.waboxapp.com/api/send/chat'+token+uid+to+custom_id+text 
     response = requests.post(url2)
+   
     print(response)
     print(response.json())   
 
