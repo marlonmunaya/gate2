@@ -108,9 +108,28 @@ def livesendmsg():
     responsejson = response.json()
     tokenlive = responsejson["PageGearToken"]
     print(response)
- 
+    try:
+        livesendmsg1(tokenlive)
+    except:
+        print("Fallo")   
     return tokenlive
 
+
+def livesendmsg1(token):   
+    tokens ={'PageGearToken': token}
+    url = 'https://api.pagegear.co/liveconnect/direct/wa/sendMessage'
+    headers = {'Accept':'*/*','Content-type': 'application/json'}
+    data = {
+    "id_canal": 2974,
+    "numero": 51937535378,
+    "mensaje": "Mensaje de prueba"
+    }
+    response = requests.post(url, headers=headers,json=data,auth= tokens)
+    responsejson = response.json()
+    
+    print(responsejson)
+
+    
 def sendwaboxapp(destino,mensaje):    
     token='?token=5303b353839545c8d5041da4eb118d866040e7fe2e166&uid=51927793746'
     uid='&uid=51927793746'
