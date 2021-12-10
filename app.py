@@ -18,6 +18,11 @@ tasks = [
 def get_tasks():
     return jsonify({'tasks': tasks})
 
+@app.route('/todo/api/v1.0/live', methods=['GET'])
+def live():
+    livesendmsg()
+    return jsonify({'tasks': livesendmsg()})    
+
 
 @app.route('/todo/api/v1.0/rec', methods=['POST'])
 def create_task():
@@ -71,7 +76,7 @@ def sendwati():
     headers = {'Accept':'*/*','Content-type': 'application/json-patch+json ; charset=UTF-8','Authorization': 'Bearer ' + auth_token}
     response = requests.post(url, params=param, headers=headers,json=data2)
     print(response)
-    print(response.json())    
+    print(response.json()) 
 
 def sendgateway(msn,destino):    
     url = 'https://smsgateway.me/api/v4/message/send'
@@ -87,6 +92,20 @@ def sendgateway(msn,destino):
     response = requests.post(url, headers=headers,json=data)
     print(response)
     print(response.json())
+
+def livesendmsg():    
+    url = 'https://api.pagegear.co/liveconnect/account/token'
+    headers = {'Accept':'*/*','Content-type': 'application/json ; charset=UTF-8'}
+    data = [{
+    "cKey": "77f75b91674e06b4e305b95c026d53d1",
+    "privateKey": "851d1d96d6633b4ced6d3d50d6d6a956"
+    }]
+    response = requests.post(url, headers=headers,json=data)
+    auth_token=''
+    print(response)
+    print(response.json())
+
+    return response.json()
 
 def sendwaboxapp(destino,mensaje):    
     token='?token=5303b353839545c8d5041da4eb118d866040e7fe2e166&uid=51927793746'
