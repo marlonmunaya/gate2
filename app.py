@@ -97,7 +97,6 @@ def sendgateway(msn,destino):
     print(response.json())
 
 def livesendmsg():   
-    
     url = 'https://api.pagegear.co/liveconnect/account/token'
     headers = {'Accept':'*/*','Content-type': 'application/json'}
     data = {
@@ -107,7 +106,7 @@ def livesendmsg():
     response = requests.post(url, headers=headers,json=data)
     responsejson = response.json()
     tokenlive = responsejson["PageGearToken"]
-    print(response)
+    # print(response)
     try:
         livesendmsg1(tokenlive)
     except:
@@ -116,7 +115,6 @@ def livesendmsg():
 
 
 def livesendmsg1(token):   
-    
     url = 'https://api.pagegear.co/liveconnect/direct/wa/sendMessage'
     headers = {'Accept':'*/*','Content-type': 'application/json','PageGearToken': token}
     data = {
@@ -125,9 +123,8 @@ def livesendmsg1(token):
     "mensaje": "Mensaje de prueba"
     }
     response = requests.post(url, headers=headers,json=data)
-    responsejson = response.json()
-    
-    print(responsejson)
+    # responsejson = response.json()
+    print(response)
 
     
 def sendwaboxapp(destino,mensaje):    
