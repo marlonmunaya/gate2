@@ -96,10 +96,10 @@ def sendgateway(msn,destino):
 def livesendmsg():    
     url = 'https://api.pagegear.co/liveconnect/account/token'
     headers = {'Accept':'*/*','Content-type': 'application/json'}
-    data = [{
+    data = {
     "cKey": "77f75b91674e06b4e305b95c026d53d1",
     "privateKey": "851d1d96d6633b4ced6d3d50d6d6a956"
-    }]
+    }
     response = requests.post(url, headers=headers,json=data)
     auth_token=''
     print(response)
