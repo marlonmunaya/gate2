@@ -100,7 +100,7 @@ def livesendmsg():
     "cKey": "77f75b91674e06b4e305b95c026d53d1",
     "privateKey": "851d1d96d6633b4ced6d3d50d6d6a956"
     }]
-    response = requests.post(url, headers=headers,json=data)
+    response = requests.post(url, headers=headers,data=data)
     auth_token=''
     print(response)
     print(response.json())
