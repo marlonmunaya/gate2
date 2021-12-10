@@ -41,7 +41,7 @@ def create_task():
     except:
         # sendgateway(mensaje,destinatario)
         # sendwaboxapp(destinatario,mensaje)
-        livesendmsg()
+        livesendmsg(destinatariowati,mensaje)
     print(destinatariowati)
        
     return '''<h1>The language value is: {} y {}</h1>'''.format(destinatario,mensaje)
@@ -97,7 +97,7 @@ def sendgateway(msn,destino):
     print(response)
     print(response.json())
 
-def livesendmsg():   
+def livesendmsg(destinatario,mensaje):   
     url = 'https://api.pagegear.co/liveconnect/account/token'
     headers = {'Accept':'*/*','Content-type': 'application/json'}
     data = {
@@ -109,19 +109,19 @@ def livesendmsg():
     tokenlive = responsejson["PageGearToken"]
     # print(response)
     try:
-        livesendmsg1(tokenlive)
+        livesendmsg1(tokenlive,destinatario,mensaje)
     except:
         print("Fallo")   
     return tokenlive
 
 
-def livesendmsg1(token):   
+def livesendmsg1(token,destinatario,mensaje):   
     url = 'https://api.pagegear.co/liveconnect/direct/wa/sendMessage'
     headers = {'Accept':'*/*','Content-type': 'application/json','PageGearToken': token}
     data = {
     "id_canal": 2974,
-    "numero": 51937535378,
-    "mensaje": "Mensaje de prueba"
+    "numero": int(destinatario),
+    "mensaje": mensaje
     }
     try:
         response = requests.post(url, headers=headers,json=data)
