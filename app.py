@@ -135,16 +135,15 @@ def livesendmsg1(token,destinatario,mensaje):
 def livesendfile(token,destinatario,mensaje):   
     url = 'https://api.pagegear.co/liveconnect/direct/wa/sendFile'
     headers = {'Accept':'*/*','Content-type': 'application/json','PageGearToken': token}
-    
+    datosfile = json.loads(mensaje)
+    datafile = {
+    "id_canal": 2974,
+    "numero": int(destinatario),
+    "url" : datosfile['url'],
+    "nombre": datosfile['nombre'],
+    "extension": datosfile['extension']
+    }
     try:
-        datosfile = json.loads(mensaje)
-        datafile = {
-        "id_canal": 2974,
-        "numero": int(destinatario),
-        "url" : datosfile['url'],
-        "nombre": datosfile['nombre'],
-        "extension": datosfile['extension']
-        }
         response = requests.post(url, headers=headers,json=datafile)
         print("exito envio file liveconnect")
     except:
