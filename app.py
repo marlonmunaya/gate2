@@ -111,15 +111,14 @@ def livesendmsg(destinatario,mensaje):
     tokenlive = responsejson["PageGearToken"]
     # print(response)
     try:
-        # datostoken = json.loads(mensaje)
-        # if (datostoken['service']=='file'):
-        #     livesendfile(tokenlive,destinatario,mensaje)
-        # else:
-             livesendmsg1(tokenlive,destinatario,mensaje)   
+        datostoken = json.loads(mensaje)
+        if (datostoken['service']=='file'):
+            livesendmsg1(tokenlive,destinatario,mensaje)
+        else:
+            livesendmsg1(tokenlive,destinatario,mensaje)   
     except:
         print("Fallo token")   
     return tokenlive
-
 
 def livesendmsg1(token,destinatario,mensaje):   
     url = 'https://api.pagegear.co/liveconnect/direct/wa/sendMessage'
@@ -131,9 +130,9 @@ def livesendmsg1(token,destinatario,mensaje):
     }
     try:
         response = requests.post(url, headers=headers,json=datamsg1)
-        print("exito")
+        print("exito envio msg liveconnect")
     except:
-        print("Fallo al enviar")  
+        print("Fallo al enviar msg")  
     # responsejson = response.json()
 
 def livesendfile(token,destinatario,mensaje):   
@@ -149,9 +148,9 @@ def livesendfile(token,destinatario,mensaje):
     }
     try:
         response = requests.post(url, headers=headers,json=datafile)
-        print("exito")
+        print("exito envio file liveconnect")
     except:
-        print("Fallo al enviar")  
+        print("Fallo al enviar file")  
     # responsejson = response.json()
 
     
