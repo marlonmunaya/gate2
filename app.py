@@ -38,8 +38,7 @@ def create_task():
         datos = json.loads(mensaje)
         if (datos['service']=='bienvenida5'):
             sendwati()
-        if (datos['service']=='file'):
-            livesendmsg(destinatariowati,mensaje)   
+     
     except:
         # sendgateway(mensaje,destinatario)
         # sendwaboxapp(destinatario,mensaje)
@@ -109,15 +108,12 @@ def livesendmsg(destinatario,mensaje):
     response = requests.post(url, headers=headers,json=data)
     responsejson = response.json()
     tokenlive = responsejson["PageGearToken"]
-    # print(response)
+    datostoken = json.loads(mensaje)
     try:
-        # datostoken = json.loads(mensaje)
-        # if (datostoken['service']=='file'):
-        #     livesendmsg1(tokenlive,destinatario,mensaje)
-        # else:
-        livesendmsg1(tokenlive,destinatario,mensaje)   
+        if (datostoken['service']=='file'):
+            livesendfile(tokenlive,destinatario,mensaje)
     except:
-        print("Fallo token")   
+        livesendmsg1(tokenlive,destinatario,mensaje)  
     return tokenlive
 
 def livesendmsg1(token,destinatario,mensaje):   
