@@ -38,6 +38,8 @@ def create_task():
         datos = json.loads(mensaje)
         if (datos['service']=='bienvenida5'):
             sendwati()
+        if (datos['service']=='file'):
+            livesendmsg(destinatariowati,mensaje)   
     except:
         # sendgateway(mensaje,destinatario)
         # sendwaboxapp(destinatario,mensaje)
@@ -109,7 +111,11 @@ def livesendmsg(destinatario,mensaje):
     tokenlive = responsejson["PageGearToken"]
     # print(response)
     try:
-        livesendmsg1(tokenlive,destinatario,mensaje)
+        datos = json.loads(mensaje)
+        if (datos['service']=='file'):
+            livesendfile(tokenlive,destinatario,mensaje)
+        else:
+             livesendmsg1(tokenlive,destinatario,mensaje)   
     except:
         print("Fallo")   
     return tokenlive
@@ -122,6 +128,24 @@ def livesendmsg1(token,destinatario,mensaje):
     "id_canal": 2974,
     "numero": int(destinatario),
     "mensaje": mensaje
+    }
+    try:
+        response = requests.post(url, headers=headers,json=data)
+        print("exito")
+    except:
+        print("Fallo al enviar")  
+    # responsejson = response.json()
+
+def livesendfile(token,destinatario,mensaje):   
+    url = 'https://api.pagegear.co/liveconnect/direct/wa/sendFile'
+    headers = {'Accept':'*/*','Content-type': 'application/json','PageGearToken': token}
+    datos = json.loads(mensaje)
+    data = {
+    "id_canal": 2974,
+    "numero": int(destinatario),
+    "url" : datos['url'],
+    "nombre":datos['nombre'],
+    "extension": datos['extension']
     }
     try:
         response = requests.post(url, headers=headers,json=data)
