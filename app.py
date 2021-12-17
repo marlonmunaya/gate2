@@ -111,10 +111,10 @@ def livesendmsg(destinatario,mensaje):
     tokenlive = responsejson["PageGearToken"]
     # print(response)
     try:
-        datostoken = json.loads(mensaje)
-        if (datostoken['service']=='file'):
-            livesendfile(tokenlive,destinatario,mensaje)
-        else:
+        # datostoken = json.loads(mensaje)
+        # if (datostoken['service']=='file'):
+        #     livesendfile(tokenlive,destinatario,mensaje)
+        # else:
              livesendmsg1(tokenlive,destinatario,mensaje)   
     except:
         print("Fallo token")   
