@@ -111,26 +111,26 @@ def livesendmsg(destinatario,mensaje):
     tokenlive = responsejson["PageGearToken"]
     # print(response)
     try:
-        datos = json.loads(mensaje)
-        if (datos['service']=='file'):
+        datostoken = json.loads(mensaje)
+        if (datostoken['service']=='file'):
             livesendfile(tokenlive,destinatario,mensaje)
         else:
              livesendmsg1(tokenlive,destinatario,mensaje)   
     except:
-        print("Fallo")   
+        print("Fallo token")   
     return tokenlive
 
 
 def livesendmsg1(token,destinatario,mensaje):   
     url = 'https://api.pagegear.co/liveconnect/direct/wa/sendMessage'
     headers = {'Accept':'*/*','Content-type': 'application/json','PageGearToken': token}
-    data = {
+    datamsg1 = {
     "id_canal": 2974,
     "numero": int(destinatario),
     "mensaje": mensaje
     }
     try:
-        response = requests.post(url, headers=headers,json=data)
+        response = requests.post(url, headers=headers,json=datamsg1)
         print("exito")
     except:
         print("Fallo al enviar")  
@@ -139,16 +139,16 @@ def livesendmsg1(token,destinatario,mensaje):
 def livesendfile(token,destinatario,mensaje):   
     url = 'https://api.pagegear.co/liveconnect/direct/wa/sendFile'
     headers = {'Accept':'*/*','Content-type': 'application/json','PageGearToken': token}
-    datos = json.loads(mensaje)
-    data = {
+    datosfile = json.loads(mensaje)
+    datafile = {
     "id_canal": 2974,
     "numero": int(destinatario),
-    "url" : datos['url'],
-    "nombre":datos['nombre'],
-    "extension": datos['extension']
+    "url" : datosfile['url'],
+    "nombre":datosfile['nombre'],
+    "extension": datosfile['extension']
     }
     try:
-        response = requests.post(url, headers=headers,json=data)
+        response = requests.post(url, headers=headers,json=datafile)
         print("exito")
     except:
         print("Fallo al enviar")  
