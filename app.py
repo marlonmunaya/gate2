@@ -111,9 +111,10 @@ def livesendmsg(destinatario,mensaje):
     
     try:
         datostoken = json.loads(mensaje)
-        if (datostoken['service']=='file'):
+        # if (datostoken['service']=='file'):
         #     livesendfile(tokenlive,destinatario,mensaje)
-            print("msg file")    
+        print(str(datostoken))   
+        print("file")  
     except:
         livesendmsg1(tokenlive,destinatario,mensaje)
         print("msg")    
