@@ -113,8 +113,10 @@ def livesendmsg(destinatario,mensaje):
         datostoken = json.loads(mensaje)
         if (datostoken['service']=='file'):
             livesendfile(tokenlive,destinatario,mensaje)
+        print("msg file")    
     except:
-        livesendmsg1(tokenlive,destinatario,mensaje)  
+        livesendmsg1(tokenlive,destinatario,mensaje)
+        print("msg")    
     # return tokenlive
 
 def livesendmsg1(token,destinatario,mensaje):   
@@ -143,6 +145,7 @@ def livesendfile(token,destinatario,mensaje):
     "nombre": datosfile['nombre'],
     "extension": datosfile['extension']
     }
+    print(datosfile['url'])
     try:
         response = requests.post(url, headers=headers,json=datafile)
         print("exito envio file liveconnect")
