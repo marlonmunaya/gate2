@@ -118,7 +118,7 @@ def livesendmsg(destinatario,mensaje):
     except:
         livesendmsg1(tokenlive,destinatario,mensaje)
         print("msg")    
-        print(mensaje)    
+        print(str(mensaje))    
     # return tokenlive
 
 def livesendmsg1(token,destinatario,mensaje):   
