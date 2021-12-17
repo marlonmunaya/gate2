@@ -42,6 +42,7 @@ def create_task():
         # sendgateway(mensaje,destinatario)
         # sendwaboxapp(destinatario,mensaje)
         livesendmsg(destinatariowati,mensaje)
+
     print(destinatariowati)
        
     return '''<h1>The language value is: {} y {}</h1>'''.format(destinatario,mensaje)
@@ -113,7 +114,7 @@ def livesendmsg(destinatario,mensaje):
             livesendfile(tokenlive,destinatario,mensaje)
     except:
         livesendmsg1(tokenlive,destinatario,mensaje)  
-    return tokenlive
+    # return tokenlive
 
 def livesendmsg1(token,destinatario,mensaje):   
     url = 'https://api.pagegear.co/liveconnect/direct/wa/sendMessage'
