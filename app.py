@@ -38,7 +38,6 @@ def create_task():
         datos = json.loads(mensaje)
         if (datos['service']=='bienvenida5'):
             sendwati()
-     
     except:
         # sendgateway(mensaje,destinatario)
         # sendwaboxapp(destinatario,mensaje)
