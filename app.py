@@ -36,7 +36,7 @@ def create_task():
     mensaje = request.values.get('mensaje')
     try:
         datos = json.loads(mensaje)
-        if (datos['service']=='bienvenida5'):
+        if ("wati" in datos['service']):
             sendwati()
         if (datos['service']=='file'):
             livesendmsg(destinatariowati,mensaje)   
@@ -62,14 +62,15 @@ def test():
 def sendwati():    
     url = 'https://live-server-763.wati.io/api/v1/sendTemplateMessage'
     auth_token='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI0M2I0Mjk3My0yNWI3LTRhYjYtODQxYy1lNTQwZDU3OTQ4YmIiLCJ1bmlxdWVfbmFtZSI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsIm5hbWVpZCI6ImFnZW50ZTVAdGVsZW5ldC5wZSIsImVtYWlsIjoiYWdlbnRlNUB0ZWxlbmV0LnBlIiwiYXV0aF90aW1lIjoiMTIvMDcvMjAyMSAxNDowNzoyOCIsImRiX25hbWUiOiJ3YXRpTGl2ZTc2MyIsImh0dHA6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFETUlOSVNUUkFUT1IiLCJleHAiOjI1MzQwMjMwMDgwMCwiaXNzIjoiQ2xhcmVfQUkiLCJhdWQiOiJDbGFyZV9BSSJ9.aSbOQ_quBqa7xnEL3kJCsSJxUcXuztCLwYC0HEkCJgo'
-        
+    split=datos["service"].split(".")
+             
     param = {'whatsappNumber': destinatariowati}
     data={"template_name": datos["service"],
             "broadcast_name": datos["service"],
             "parameters": [{"name":"name", "value": datos["name"]}]
         }
-    data2={"template_name": datos["service"],
-            "broadcast_name": datos["service"],
+    data2={"template_name": split[1],
+            "broadcast_name": split[1],
         "parameters":[
             {"name":"name","value": datos["name"]},
             {"name":"cedula","value": datos["cedula"]},
