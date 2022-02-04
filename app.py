@@ -32,7 +32,7 @@ def live():
 @app.route('/todo/api/v1.0/mwp', methods=['POST'])
 def mwp():
     # sendtomwp(request)
-    print(str(request))
+    print(str(request.json))
     return jsonify({'tasks': tasks})
 
 @app.route('/todo/api/v1.0/rec', methods=['POST'])
