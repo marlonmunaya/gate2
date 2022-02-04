@@ -176,7 +176,7 @@ def sendwaboxapp(destino,mensaje):
 
 #/////////////////MIKROWISP PRE-REGISTRO///////////////////
 
-def sendtomwp(token,destinatario,mensaje):   
+def sendtomwp():   
     url = 'https://oficina.gpon.pe/api/v1/NewPreRegistro'
     tokenmwp = "cFhtUEdjTFlVMWpXY3FXUjR1Rmxzdz09"
 
