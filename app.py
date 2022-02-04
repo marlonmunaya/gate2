@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, abort, request
+from flask_cors import CORS
 import requests
 import json
 
@@ -8,7 +9,9 @@ mensaje =""
 responselive=""
 destinatariowati =""
 datos={}
+
 app = Flask(__name__)
+CORS(app)
 
 tasks = [
     {
