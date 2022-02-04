@@ -181,7 +181,7 @@ def sendtomwp():
     tokenmwp = "cFhtUEdjTFlVMWpXY3FXUjR1Rmxzdz09"
 
     headers = {'Accept':'*/*','Content-type': 'application/json'}
-    datosfile = json.loads(mensaje)
+    
     datafile = {
               "token": tokenmwp,
               "cliente": "i.nombre",
@@ -193,7 +193,7 @@ def sendtomwp():
               "fecha_instalacion": "i.fechainstalacion",
               "vendedor": "i.vendedor",
             }
-    print(datosfile['url'])
+    
     try:
         response = requests.post(url, headers=headers,json=datafile)
         print("exito envio mikrowisp")
