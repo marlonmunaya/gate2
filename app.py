@@ -26,6 +26,10 @@ def live():
     livesendmsg()
     return jsonify({'tasks': livesendmsg()})    
 
+@app.route('/todo/api/v1.0/mwp', methods=['GET'])
+def mwp():
+    sendtomwp()
+    return jsonify({'tasks': tasks})
 
 @app.route('/todo/api/v1.0/rec', methods=['POST'])
 def create_task():
@@ -157,7 +161,6 @@ def livesendfile(token,destinatario,mensaje):
     except:
         print("Fallo al enviar file")  
     # responsejson = response.json()
-
     
 def sendwaboxapp(destino,mensaje):    
     token='?token=5303b353839545c8d5041da4eb118d866040e7fe2e166&uid=51927793746'
@@ -170,6 +173,33 @@ def sendwaboxapp(destino,mensaje):
    
     print(response)
     print(response.json())   
+
+#/////////////////MIKROWISP PRE-REGISTRO///////////////////
+
+def sendtomwp(token,destinatario,mensaje):   
+    url = 'https://oficina.gpon.pe/api/v1/NewPreRegistro'
+    tokenmwp = "cFhtUEdjTFlVMWpXY3FXUjR1Rmxzdz09"
+
+    headers = {'Accept':'*/*','Content-type': 'application/json'}
+    datosfile = json.loads(mensaje)
+    datafile = {
+              "token": tokenmwp,
+              "cliente": "i.nombre",
+              "cedula": "i.cedula",
+              "direccion": "i.direccion",
+              "telefono": "i.fijo",
+              "movil": "i.celular",
+              "email": "i.email",
+              "fecha_instalacion": "i.fechainstalacion",
+              "vendedor": "i.vendedor",
+            }
+    print(datosfile['url'])
+    try:
+        response = requests.post(url, headers=headers,json=datafile)
+        print("exito envio mikrowisp")
+    except:
+        print("Fallo al enviar file")  
+    # responsejson = response.json()    
 
 if __name__ == '__main__':
     app.run(debug=False)
