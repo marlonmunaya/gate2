@@ -30,7 +30,7 @@ def live():
 def mwp():
     # sendtomwp(request)
     print(str(request))
-    # return jsonify({'tasks': [request]})
+    return jsonify({'tasks': tasks})
 
 @app.route('/todo/api/v1.0/rec', methods=['POST'])
 def create_task():
