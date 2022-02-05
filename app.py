@@ -25,8 +25,8 @@ mwptrue={
   "mensaje": "Operación exitosa."
 }
 mwpfalse={
-  "estado": "sin exito",
-  "mensaje": "Operación falló."
+  "estado": "error",
+  "mensaje": "Fallo de servidor."
 }
 
 @app.route('/todo/api/v1.0/tasks', methods=['GET'])
@@ -44,9 +44,8 @@ def mwp():
     resp = jsonify(success=True)
     if (resp.status_code==200):        
         datas = request.json
-        sendtomwp(datas)
-        
-        return jsonify(mwptrue)
+        retorno = sendtomwp(datas)
+        return jsonify(retorno)
     else:
         return jsonify(mwpfalse)
 
@@ -203,19 +202,20 @@ def sendtomwp(req):
 
     headers = {'Accept':'*/*','Content-type': 'application/json'}
    
-    try:    
-          
+    try:      
         req["token"] = tokenmwp
         datadump= json.dumps(req)
         print(datadump)
         datajson = json.loads(datadump)
-        # # datajson.update(datatoken)
-
+        
         response = requests.post(urllima, headers=headers,json=datajson)
         print(response.json())
-        # print("exito envio mikrowisp")
+        return response.json()
+        
     except:
-        print("Fallo al enviar mikrowisp")  
+        mensaje={'estado': 'error', 'mensaje': 'Fallo de logica'}
+        print(mensaje)
+        return mensaje  
     # responsejson = response.json()    
 
 if __name__ == '__main__':
