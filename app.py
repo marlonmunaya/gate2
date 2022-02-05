@@ -204,9 +204,7 @@ def sendtomwp(req):
     headers = {'Accept':'*/*','Content-type': 'application/json'}
     datatoken = {"token": tokenmwp}
    
-    try:
-        tokenmwp = "cFhtUEdjTFlVMWpXY3FXUjR1Rmxzdz09"
-        
+    try:       
         req['token'] = tokenmwp
         datajson = json.dumps(req)
         # datajson.update(datatoken)
