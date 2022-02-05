@@ -196,25 +196,27 @@ def sendwaboxapp(destino,mensaje):
 #/////////////////MIKROWISP PRE-REGISTRO///////////////////
 
 def sendtomwp(req):   
+    global url
+    url=""
     urllima = 'https://oficina.gpon.pe/api/v1/NewPreRegistro'
     urlcusco ='https://oficinacusco.gpon.pe/api/v1/NewPreRegistro'
     tokenmwp = "cFhtUEdjTFlVMWpXY3FXUjR1Rmxzdz09"
 
     headers = {'Accept':'*/*','Content-type': 'application/json'}
-   
+
     try:      
         req["token"] = tokenmwp
         datadump= json.dumps(req)
         print(datadump)
         datajson = json.loads(datadump)
         if(datajson['departamento'] == "Lima"):
-            respon = requests.post(urllima, headers=headers,json=datajson)
-            print(respon.json())
-            return respon.json()
+            url = urllima
         else:
-            response = requests.post(urlcusco, headers=headers,json=datajson)
-            print(response.json())
-            return response.json()    
+            url = urlcusco
+        respon = requests.post(url, headers=headers,json=datajson)
+        print(respon.json())
+        return respon.json()
+   
         
     except:
         mensaje={'estado': 'error', 'mensaje': 'Fallo de logica'}
