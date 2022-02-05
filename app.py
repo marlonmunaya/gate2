@@ -207,12 +207,12 @@ def sendtomwp(req):
           
         req["token"] = tokenmwp
         datadump= json.dumps(req)
-        datajson = json.loads(datadump)
-        # datajson.update(datatoken)
-        # print(str(datajson))
+        print(datadump)
+        datajson = json.load(datadump)
+        # # datajson.update(datatoken)
 
-        response = requests.post(urllima, headers=headers,json=datajson)
-        print(response.json())
+        # response = requests.post(urllima, headers=headers,json=datajson)
+        # print(response.json())
         print("exito envio mikrowisp")
     except:
         print("Fallo al enviar mikrowisp")  
