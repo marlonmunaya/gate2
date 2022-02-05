@@ -207,10 +207,14 @@ def sendtomwp(req):
         datadump= json.dumps(req)
         print(datadump)
         datajson = json.loads(datadump)
-        
-        response = requests.post(urllima, headers=headers,json=datajson)
-        print(response.json())
-        return response.json()
+        if(datajson["departamento"] == "Lima"):
+            response = requests.post(urllima, headers=headers,json=datajson)
+            print(response.json())
+            return response.json()
+        else:
+            response = requests.post(urlcusco, headers=headers,json=datajson)
+            print(response.json())
+            return response.json()    
         
     except:
         mensaje={'estado': 'error', 'mensaje': 'Fallo de logica'}
