@@ -209,11 +209,13 @@ def sendtomwp(req):
         datadump= json.dumps(req)
         print(datadump)
         datajson = json.loads(datadump)
-        if(datajson['departamento'] == "Lima"):
-            url = urllima
-        else:
-            url = urlcusco
-        respon = requests.post(url, headers=headers,json=datajson)
+
+        # if(datajson['departamento'] == "Lima"):
+        #     print(urllima)
+        # else:
+        #     print(urlcusco)
+
+        respon = requests.post(urllima, headers=headers,json=datajson)
         print(respon.json())
         return respon.json()
    
