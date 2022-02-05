@@ -213,6 +213,7 @@ def sendtomwp(req):
         print(str(datajson))
 
         response = requests.post(urllima, headers=headers,json=datajson)
+        print(response.json())
         print("exito envio mikrowisp")
     except:
         print("Fallo al enviar mikrowisp")  
