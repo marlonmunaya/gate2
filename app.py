@@ -202,13 +202,13 @@ def sendtomwp(req):
     tokenmwp = "cFhtUEdjTFlVMWpXY3FXUjR1Rmxzdz09"
 
     headers = {'Accept':'*/*','Content-type': 'application/json'}
-    datatoken = {"token": tokenmwp}
    
-    try:       
-        req['token'] = tokenmwp
-        datajson = json.dumps(req)
+    try:    
+        dato=req   
+        dato["token"] = tokenmwp
+        datajson = json.loads(dato)
         # datajson.update(datatoken)
-        print(str(datajson))
+        # print(str(datajson))
 
         response = requests.post(urllima, headers=headers,json=datajson)
         print(response.json())
