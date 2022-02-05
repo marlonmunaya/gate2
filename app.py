@@ -200,10 +200,11 @@ def sendtomwp(req):
 
     headers = {'Accept':'*/*','Content-type': 'application/json'}
     datatoken = {"token": tokenmwp}
-    datajson = json.loads(req)
-    datajson.update(datatoken)
+   
     
     try:
+        datajson = json.loads(str(req))
+        datajson.update(datatoken)
         response = requests.post(urllima, headers=headers,json=datajson)
         print("exito envio mikrowisp")
     except:
