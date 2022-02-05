@@ -40,11 +40,11 @@ def live():
 
 @app.route('/todo/api/v1.0/mwp', methods=['POST'])
 def mwp():
-    sendtomwp(request.json)
     print(str(request.json))
     resp = jsonify(success=True)
     if (resp.status_code==200):        
-        return jsonify(mwptrue)
+        return jsonify(str(mwptrue))
+        sendtomwp(request.json)
     else:
         return jsonify(mwpfalse)
 
