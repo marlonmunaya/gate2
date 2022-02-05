@@ -204,9 +204,9 @@ def sendtomwp(req):
     headers = {'Accept':'*/*','Content-type': 'application/json'}
    
     try:    
-        dato=req   
-        dato["token"] = tokenmwp
-        datajson = json.loads(dato)
+          
+        req["token"] = tokenmwp
+        datajson = json.loads(req)
         # datajson.update(datatoken)
         # print(str(datajson))
 
