@@ -206,7 +206,8 @@ def sendtomwp(req):
     try:    
           
         req["token"] = tokenmwp
-        datajson = json.loads(req)
+        datadump= json.dumps(req)
+        datajson = json.loads(datadump)
         # datajson.update(datatoken)
         # print(str(datajson))
 
