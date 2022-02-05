@@ -43,7 +43,13 @@ def mwp():
     print(str(request.json))
     resp = jsonify(success=True)
     if (resp.status_code==200):        
-        sendtomwp(str(request.json))
+        # sendtomwp(str(request.json))
+        tokenmwp = "cFhtUEdjTFlVMWpXY3FXUjR1Rmxzdz09"
+        datatoken = {"token": tokenmwp}
+        datas = str(request.json)
+        datajson = json.loads(datas)
+        datajson.update(datatoken)
+        print(str(datajson))
         return jsonify(mwptrue)
     else:
         return jsonify(mwpfalse)
@@ -55,6 +61,7 @@ def create_task():
     destinatariowati = "51" + request.values.get('destinatario')
     destinatario = request.values.get('destinatario')
     mensaje = request.values.get('mensaje')
+    
     try:
         datos = json.loads(mensaje)
         if ("wati" in datos['service']):
