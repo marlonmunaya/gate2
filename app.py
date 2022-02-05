@@ -208,9 +208,9 @@ def sendtomwp(req):
         print(datadump)
         datajson = json.loads(datadump)
         if(datajson['departamento'] == "Lima"):
-            response = requests.post(urllima, headers=headers,json=datajson)
-            print(response.json())
-            return response.json()
+            respon = requests.post(urllima, headers=headers,json=datajson)
+            print(respon.json())
+            return respon.json()
         else:
             response = requests.post(urlcusco, headers=headers,json=datajson)
             print(response.json())
