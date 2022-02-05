@@ -1,3 +1,4 @@
+import re
 from flask import Flask, jsonify, abort, request
 from flask_cors import CORS
 import requests
@@ -19,6 +20,14 @@ tasks = [
         'prueba2': u'Buy groceries',
     }
 ]
+mwptrue={
+  "estado": "exito",
+  "mensaje": "Operación exitosa."
+}
+mwpfalse={
+  "estado": "sin exito",
+  "mensaje": "Operación falló."
+}
 
 @app.route('/todo/api/v1.0/tasks', methods=['GET'])
 def get_tasks():
@@ -31,9 +40,13 @@ def live():
 
 @app.route('/todo/api/v1.0/mwp', methods=['POST'])
 def mwp():
-    # sendtomwp(request)
+    sendtomwp(request.json)
     print(str(request.json))
-    return jsonify(request.json)
+    resp = jsonify(success=True)
+    if (resp.status_code==200):        
+        return jsonify(mwptrue)
+    else:
+        return jsonify(mwpfalse)
 
 @app.route('/todo/api/v1.0/rec', methods=['POST'])
 def create_task():
@@ -186,21 +199,12 @@ def sendtomwp(req):
     tokenmwp = "cFhtUEdjTFlVMWpXY3FXUjR1Rmxzdz09"
 
     headers = {'Accept':'*/*','Content-type': 'application/json'}
-    
-    datafile = {
-              "token": tokenmwp,
-              "cliente": "i.nombre",
-              "cedula": "i.cedula",
-              "direccion": "i.direccion",
-              "telefono": "i.fijo",
-              "movil": "i.celular",
-              "email": "i.email",
-              "fecha_instalacion": "i.fechainstalacion",
-              "vendedor": "i.vendedor",
-            }
+    datatoken = {"token": tokenmwp}
+    datajson = json.loads(req)
+    datajson.update(datatoken)
     
     try:
-        response = requests.post(urllima, headers=headers,json=datafile)
+        response = requests.post(urllima, headers=headers,json=datajson)
         print("exito envio mikrowisp")
     except:
         print("Fallo al enviar mikrowisp")  
