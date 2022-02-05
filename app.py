@@ -43,8 +43,8 @@ def mwp():
     print(str(request.json))
     resp = jsonify(success=True)
     if (resp.status_code==200):        
-        return jsonify(str(mwptrue))
-        sendtomwp(request.json)
+        sendtomwp(str(request.json))
+        return jsonify(mwptrue)
     else:
         return jsonify(mwpfalse)
 
