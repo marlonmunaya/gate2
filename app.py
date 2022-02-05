@@ -48,6 +48,7 @@ def mwp():
         datatoken = {"token": tokenmwp}
         # datas = str(request.json)
         datajson = json.dumps(request.json)
+        datajson['token'].append(tokenmwp)
         # datajson.update(datatoken)
         print(str(datajson))
         return jsonify(mwptrue)
