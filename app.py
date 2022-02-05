@@ -1,4 +1,5 @@
 import re
+from sys import unraisablehook
 from flask import Flask, jsonify, abort, request
 from flask_cors import CORS
 import requests
@@ -206,16 +207,19 @@ def sendtomwp(req):
 
     try:      
         req["token"] = tokenmwp
+        req.pop
         datadump= json.dumps(req)
         print(datadump)
         datajson = json.loads(datadump)
+        if(datajson['departamento'] == "Lima"):
+            url = urllima
+            print(urllima)
+        else:
+            url = urlcusco
+            print(urlcusco)
+        datajson.pop("departamento")  
 
-        # if(datajson['departamento'] == "Lima"):
-        #     print(urllima)
-        # else:
-        #     print(urlcusco)
-
-        respon = requests.post(urllima, headers=headers,json=datajson)
+        respon = requests.post(url, headers=headers,json=datajson)
         print(respon.json())
         return respon.json()
    
