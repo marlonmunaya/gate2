@@ -43,14 +43,9 @@ def mwp():
     print(str(request.json))
     resp = jsonify(success=True)
     if (resp.status_code==200):        
-        # sendtomwp(str(request.json))
-        tokenmwp = "cFhtUEdjTFlVMWpXY3FXUjR1Rmxzdz09"
-        datatoken = {"token": tokenmwp}
         datas = request.json
-        datas['token'] = tokenmwp
-        datajson = json.dumps(datas)
-        # datajson.update(datatoken)
-        print(str(datajson))
+        sendtomwp(datas)
+        
         return jsonify(mwptrue)
     else:
         return jsonify(mwpfalse)
@@ -209,10 +204,14 @@ def sendtomwp(req):
     headers = {'Accept':'*/*','Content-type': 'application/json'}
     datatoken = {"token": tokenmwp}
    
-    
     try:
-        datajson = json.loads(str(req))
-        datajson.update(datatoken)
+        tokenmwp = "cFhtUEdjTFlVMWpXY3FXUjR1Rmxzdz09"
+        
+        req['token'] = tokenmwp
+        datajson = json.dumps(req)
+        # datajson.update(datatoken)
+        print(str(datajson))
+
         response = requests.post(urllima, headers=headers,json=datajson)
         print("exito envio mikrowisp")
     except:
