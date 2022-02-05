@@ -207,7 +207,7 @@ def sendtomwp(req):
         datadump= json.dumps(req)
         print(datadump)
         datajson = json.loads(datadump)
-        if(datajson["departamento"] == "Lima"):
+        if(datajson['departamento'] == "Lima"):
             response = requests.post(urllima, headers=headers,json=datajson)
             print(response.json())
             return response.json()
