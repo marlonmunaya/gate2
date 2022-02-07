@@ -241,7 +241,6 @@ def sendtomwp(req):
         return mensaje    
 
 def getmwp(req):   
-    global url
     url=""
     urllima = 'https://oficina.gpon.pe/api/v1/GetClientsDetails'
     urlcusco ='https://oficinacusco.gpon.pe/api/v1/GetClientsDetails'
@@ -261,7 +260,7 @@ def getmwp(req):
             url = urlcusco
             respn2 = requests.post(url, headers=headers,json=datajson)
             if(respn2.json()["estado"] =="error"):
-                mensaj={'estado': 'error', 'mensaje': 'Fallo de logica'}
+                mensaj={'estado': 'error', 'mensaje': 'No se encontró'}
                 print(mensaj)
                 return mensaj
             else:
