@@ -50,6 +50,17 @@ def mwp():
     else:
         return jsonify(mwpfalse)
 
+@app.route('/todo/api/v1.0/client', methods=['POST'])
+def client():
+    print(str(request.json))
+    rs = jsonify(success=True)
+    if (rs.status_code==200):        
+        datas = request.json
+        retorno = getmwp(datas)
+        return jsonify(retorno)
+    else:
+        return jsonify(mwpfalse)        
+
 @app.route('/todo/api/v1.0/rec', methods=['POST'])
 def create_task():
     global destinatariowati, mensaje, datos
@@ -227,8 +238,54 @@ def sendtomwp(req):
     except:
         mensaje={'estado': 'error', 'mensaje': 'Fallo de logica'}
         print(mensaje)
+        return mensaje    
+
+def getmwp(req):   
+    global url
+    url=""
+    urllima = 'https://oficina.gpon.pe/api/v1/GetClientsDetails'
+    urlcusco ='https://oficinacusco.gpon.pe/api/v1/GetClientsDetails'
+    tokenmwp = "cFhtUEdjTFlVMWpXY3FXUjR1Rmxzdz09"
+
+    headers = {'Accept':'*/*','Content-type': 'application/json'}
+
+    try:
+        req["token"] = tokenmwp      
+        datadump= json.dumps(req)
+        print(datadump)
+        datajson = json.loads(datadump)
+        
+        url = urllima
+        respn = requests.post(url, headers=headers,json=datajson)
+        if(respn.json()["estado"] =="error"):
+            url = urlcusco
+            respn2 = requests.post(url, headers=headers,json=datajson)
+            if(respn2.json()["estado"] =="error"):
+                mensaj={'estado': 'error', 'mensaje': 'Fallo de logica'}
+                print(mensaj)
+                return mensaj
+            else:
+                print(respn2.json())
+                return respn2.json()
+        else:
+            print(respn.json())
+            return respn.json()
+        # if(datajson['departamento'] == "Lima"):
+        #     url = urllima
+        #     print(urllima)
+        # else:
+        #     url = urlcusco
+        #     print(urlcusco)
+        # datajson.pop("departamento")  
+
+        # print(respon.json())
+        # return respon.json()
+        
+    except:
+        mensaje={'estado': 'error', 'mensaje': 'Fallo de logica'}
+        print(mensaje)
         return mensaje  
-    # responsejson = response.json()    
+        
 
 if __name__ == '__main__':
     app.run(debug=False)
