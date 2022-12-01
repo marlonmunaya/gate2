@@ -205,7 +205,7 @@ def sendwaboxapp(destino,mensaje):
     print(response)
     print(response.json())   
 
-#/////////////////MIKROWISP PRE-REGISTRO///////////////////
+#/////////////////MIKROWISP PRE-REGISTRO////////////////////////
 
 def sendtomwp(req):   
     global url
