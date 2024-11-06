@@ -269,7 +269,8 @@ def getmwp(req):
         else:
             print(respn.json())
             return respn.json()
-
+######
+    ##
         
     except:
         mensaje={'estado': 'error', 'mensaje': 'Fallo de logica'}
