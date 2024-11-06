@@ -269,18 +269,7 @@ def getmwp(req):
         else:
             print(respn.json())
             return respn.json()
-        # if(datajson['departamento'] == "Lima"):
-        #     url = urllima
-        #     print(urllima)
-        # else:
-        #     url = urlcusco
-        #     print(urlcusco)
-        # datajson.pop("departamento")  
-        # print(respon.json())
-        # return respon.json()
 
-
-    
         
     except:
         mensaje={'estado': 'error', 'mensaje': 'Fallo de logica'}
