@@ -278,6 +278,9 @@ def getmwp(req):
         # datajson.pop("departamento")  
         # print(respon.json())
         # return respon.json()
+
+
+    
         
     except:
         mensaje={'estado': 'error', 'mensaje': 'Fallo de logica'}
