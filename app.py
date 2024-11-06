@@ -276,7 +276,6 @@ def getmwp(req):
         #     url = urlcusco
         #     print(urlcusco)
         # datajson.pop("departamento")  
-
         # print(respon.json())
         # return respon.json()
         
